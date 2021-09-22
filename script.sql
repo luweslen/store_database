@@ -79,3 +79,63 @@ insert into Cities(name, uf, id_country) values
     ("Quevedo", null, 9);
     
 select * from Cities;
+
+-- semana 6 - 2021-09-20
+show tables;
+
+select * from Countries;
+
+-- DML - update - ataualiza um registro
+
+update Countries 
+    set name = "Puerto Iguazu" 
+    where id = 12;
+
+-- DML - insert - inserção de registros
+
+insert into Categories (name) values 
+    ("Eletrônicos"),
+    ("Alimentos e bebidas"),
+    ("Cama, mesa e banho"),
+    ("Esporte e lazer"),
+    ("Embalagens"),
+    ("Materiais de Limpeza"),
+    ("Bebês e crianças"),
+    ("Brinquedos"),
+    ("Livros"),
+    ("Games");
+
+select * from Categories;
+
+-- operadores relacionais do MySQL
+-- = igualdade
+-- <> ou != diferença
+-- < || <= || > || >=
+
+-- selecionar o nome de todas as cidades do Paraná
+select name 
+    from Cities
+    where uf = "PR"
+    order by name;
+
+-- selecionar o nome e uf todas as cidades que não são do Paraná
+select name, uf
+    from Cities
+    where uf != "PR"
+    order by uf desc;
+
+desc Categories;
+
+-- consultas de junção - para usar info de mais de uma tabela
+-- selecionar o nome das cidades com o nome dos respectivs paises em ordem alfabetica crescente do nome da cidade
+
+select Cities.name, Countries.name 
+    from Cities, Countries;
+    where Cities.id_country = Countries.id
+    order by Cities.name;
+
+-- as - renomear nome do atributo
+select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    from Cities, Countries;
+    where Cities.id_country = Countries.id
+    order by Cities.name;
