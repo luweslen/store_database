@@ -130,12 +130,29 @@ desc Categories;
 -- selecionar o nome das cidades com o nome dos respectivs paises em ordem alfabetica crescente do nome da cidade
 
 select Cities.name, Countries.name 
-    from Cities, Countries;
+    from Cities, Countries
     where Cities.id_country = Countries.id
     order by Cities.name;
 
 -- as - renomear nome do atributo
 select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
-    from Cities, Countries;
+    from Cities, Countries
     where Cities.id_country = Countries.id
     order by Cities.name;
+
+-- Atividade
+update Categories 
+    set name = "Jogos" 
+    where id = 10;
+    
+insert into Categories (name) values 
+    ("Computadores"),
+    ("Bolsas, malas e mochilas"),
+    ("CD e Vinil"),
+    ("Roupas"),
+    ("Calçados"),
+    ("Joias"),
+    ("Petshop"),
+    ("Brinquedos"),
+    ("Jardim e piscina"),
+    ("Móveis");
