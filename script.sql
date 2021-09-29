@@ -156,3 +156,67 @@ insert into Categories (name) values
     ("Brinquedos"),
     ("Jardim e piscina"),
     ("Móveis");
+
+-- Semana 7 - 2021-09-29
+
+-- Selecionar todas as cidades com nome de Palmas
+
+select * from Cities where name = "Palmas";
+
+-- Operador especial - is null
+select name from Cities where uf is null;
+
+-- Operadores lógicos - and | or | not
+-- Selecionar o nome da cidades com o nome de seus respectivos paises em ordem alfabetica crescente do nome das cidades (apenas cidades do paraná)
+select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    from Cities, Countries
+    where Cities.id_country = Countries.id
+    and Cities.uf = 'PR'
+    order by Cities.name;
+
+-- Selecionar o nome da cidades com o nome de seus respectivos paises em ordem alfabetica crescente do nome das cidades (apenas cidades do paraná e são paulo)
+select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    from Cities, Countries
+    where Cities.id_country = Countries.id
+    and (uf = 'PR' or uf = 'SP')
+    order by Cities.name;
+
+-- Selecionar o nome da cidades com o nome de seus respectivos paises em ordem alfabetica crescente do nome das cidades (exceto as cidades do paraná)
+select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais', uf
+    from Cities, Countries
+    where Cities.id_country = Countries.id
+    and not(uf = 'PR')
+    order by Cities.name;
+
+select * 
+    from Cities 
+    where name = "Palmas";
+
+-- like - utiliza para comparar um padrão de busca %
+-- selecionar o nome de todas as cidades que começam com a letra Livros
+select name 
+    from Cities
+    where name like 'L%';
+
+-- selecionar o nome de todas as cidades que tenham "ON" em qualquer parte do nome
+select name 
+    from Cities
+    where name like '%on%';
+
+-- DDL - criação da tabela de produto
+create table if not exists Products (
+    id int auto_increment primary key auto_increment,
+    name varchar(50) not null,
+    quantity int not null,
+    min_quantity int not null,
+    price decimal(6, 2) not null,
+    id_category int not null,
+    foreign key(id_category) references Categories(id)
+);
+
+show tables;
+
+-- DDL - renomear as tabelas
+-- rename table <nome_original> to <novo_nome>;
+-- alter table <nome_original> rename <novo_nome>;
+-- rename table <nome_original1> to <novo_nome1>, <nome_original2> to <novo_nome2>;
