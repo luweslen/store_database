@@ -220,3 +220,33 @@ show tables;
 -- rename table <nome_original> to <novo_nome>;
 -- alter table <nome_original> rename <novo_nome>;
 -- rename table <nome_original1> to <novo_nome1>, <nome_original2> to <novo_nome2>;
+
+-- atividade
+-- Selecione o nome de todos os paises que iniciam com a letra "E". Ordene em ordem decrescente de nome: 
+select name from Countries where name like "E%" order by name desc;
+
+-- Selecione o nome de todas as cidades, bem como o nome de seus respectivos paises para as cidades que iniciam com a letra letra "C". Ordene em ordem crescente de nome da cidade:
+select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    from Cities, Countries
+    where Cities.id_country = Countries.id
+    and Cities.name like "C%"
+    order by Cities.name;
+
+-- Selecione o nome de todas as categorias que iniciam com a letra letra "E". Ordene em ordem decrescente de nome da categoria:
+select name from Categories where name like "E%" order by name desc;
+
+-- Selecione o nome de todas as categorias que contenham a string "ri" em qualquer parte do nome. Ordene em ordem crescente de nome da categoria:
+select name from Categories where name like "%ri%" order by name;
+
+-- Qual é o comando que permite a criação do banco de dados Loja_2021.
+-- create schema loja_2021;
+
+-- Cite as três formas de visualização das colunas de uma tabela. 
+describe Categories;
+desc Categories;
+show columns from Categories;
+
+-- Explique o que o seguinte comando faz: drop schema if exists loja_2021;
+-- Apaga o esquema(banco de dados) caso ele já exista.
+
+
