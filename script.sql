@@ -249,4 +249,51 @@ show columns from Categories;
 -- Explique o que o seguinte comando faz: drop schema if exists loja_2021;
 -- Apaga o esquema(banco de dados) caso ele já exista.
 
+-- Semana 8 - 2021-09-06
+-- DDL - alteração de tabela
+--     - ADD  - adicionar coluna
+--     - DROP - apagar coluna
+alter table Products add obersevation varchar(50) not null;
 
+desc Products;
+
+alter table Products drop obersevation;
+
+alter table Products drop price;
+
+alter table Products add price decimal(10, 2) not null;
+
+insert into Products 
+    values (1, "Harry Potter e a Pedra Filosofal", 50, 10, 9, 28.50);
+insert into Products 
+    values (2, "A culpa é das estrelas", 40, 15, 9, 28.79);
+insert into Products 
+    values (3, "FIFA 2021", 100, 30, 10, 130.90);
+insert into Products 
+    values (4, "iPhone 12", 20, 5, 1, 6898.50);
+insert into Products 
+    values (5, "A menina que roubava livros", 40, 10, 9, 17.50);
+
+insert into Products 
+    values (6, "Introdução a sistemas de banco de dados", 20, 5, 9, 200.50);
+insert into Products 
+    values (7, "Bola de futebol", 100, 30, 4, 117.79);
+insert into Products 
+    values (8, "PS5", 20, 5, 1, 6582.90);
+insert into Products 
+    values (9, "Fortnite", 88, 40, 9, 249.50);
+insert into Products 
+    values (10, "Samsung Galaxy S20", 200, 50, 1, 3250.50);
+
+select * from Products;
+
+-- Selecionar o nome o valor dos produtos que custam mais do R$ 150,00. Ordene em ordem decrescente de valor
+
+select name, price from Products where price > 150.0 order by price desc;
+
+-- Selecionar o nome o valor dos produtos que custam R$ 150,00 ou menos. Ordene em ordem decrescente de valor
+select name, price from Products where price >= 150.0 order by price desc;
+
+-- Selecionar o nome o valor dos produtos que custam entre R$ 50,00 e R$ 500,00. Ordene em ordem decrescente de valor
+select name, price from Products where (price <= 500.0) and (price >= 50.0) order by price desc;
+select name, price from Products where price between 50.0 and 500.0 order by price desc;
