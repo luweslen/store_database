@@ -209,8 +209,8 @@ create table if not exists Products (
     name varchar(50) not null,
     quantity int not null,
     min_quantity int not null,
-    price decimal(6, 2) not null,
     id_category int not null,
+    price decimal(6, 2) not null,
     foreign key(id_category) references Categories(id)
 );
 
@@ -297,3 +297,16 @@ select name, price from Products where price >= 150.0 order by price desc;
 -- Selecionar o nome o valor dos produtos que custam entre R$ 50,00 e R$ 500,00. Ordene em ordem decrescente de valor
 select name, price from Products where (price <= 500.0) and (price >= 50.0) order by price desc;
 select name, price from Products where price between 50.0 and 500.0 order by price desc;
+
+-- Atividade
+insert into Products (name, quantity, min_quantity, id_category, price) values 
+    ("Apple MacBook Air 13.3", 100, 40, 11, 7293.23),
+    ("Notebook Lenovo Ultrafino", 1000, 100, 11, 2939.89),
+    ("Samsung BookIntel", 356, 36, 11, 2699.30),
+    ("Jogo Pula Macaco, Estrela ", 123, 23, 18, 39.90),
+    ("Boneca Baby Alive que Bebe e Faz Xixi", 158, 38, 18, 119.20),
+    ("Boneco Homem de Ferro", 125, 22, 18, 215.17),
+    ("Magic: The Gathering", 125, 25, 18, 49.00),
+    ("BAW WAW AREIA SANITÁRIA PERFUMADA  ", 326, 32, 17, 6.29),
+    ("Biscoito Pedigree Biscrok", 458, 128, 17, 27.89),
+    ("Coleira Antiparasitária Scalibor ", 785, 72, 17, 65.99);
