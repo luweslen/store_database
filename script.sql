@@ -250,6 +250,7 @@ show columns from Categories;
 -- Apaga o esquema(banco de dados) caso ele já exista.
 
 -- Semana 8 - 2021-09-06
+
 -- DDL - alteração de tabela
 --     - ADD  - adicionar coluna
 --     - DROP - apagar coluna
@@ -310,3 +311,63 @@ insert into Products (name, quantity, min_quantity, id_category, price) values
     ("BAW WAW AREIA SANITÁRIA PERFUMADA  ", 326, 32, 17, 6.29),
     ("Biscoito Pedigree Biscrok", 458, 128, 17, 27.89),
     ("Coleira Antiparasitária Scalibor ", 785, 72, 17, 65.99);
+
+-- Semana 9 - 2021-10-13
+
+-- Selecionar o nome e o valor dos produtos que custam menos de R$100,00 e mais de R$1000,00
+select name, price from Products where (price <= 100.0) or (price >= 1000.0);
+
+-- Selecionar o nome e o valor dos produtos, exceto aqueles que custam R$28,50
+select name, price from Products where not(price = 28.50);
+
+-- Funções agregadas
+-- count() - para fazer contagem de um conjunto de valores
+-- min() - retorna o menor valor de um conjunto de registros
+-- min() - retorna o maior valor de um conjunto de registros
+-- sum() - retorna asoma de um conjunto de valores
+-- avg() - retorna a média de um conjunto de valores
+
+-- apresente o total de produtos cadastrados
+select count(name) from Products;
+
+-- apresente o valor do produto mais barato
+select min(price) from Products;
+
+-- apresente o valor do produto mais caro
+select max(price) from Products;
+
+-- apresente a soma da variedade de produtos
+select sum(price) from Products;
+
+-- apresente a média da variedade de produtos
+select avg(price) from Products;
+
+-- criação da tabela Pessoas
+
+create table Peoples (
+    id int not null auto_increment primary key,
+    name varchar(150) not null,
+    street varchar(50) not null,
+    id_city int not null,
+    zip_code varchar(10),
+    phone varchar(20),
+    email varchar(80),
+    foreign key (id_city) references Cities (id)
+);
+
+-- incluir o atributo number
+alter table Peoples add number varchar(15) not null;
+
+-- incluir o atributo complement e observation
+alter table Peoples add complement varchar(20), add observation varchar(80);
+
+desc Peoples;
+
+-- remover o atributo observation
+alter table Peoples drop observation;
+
+-- inserrir dados na tabela peoples de
+insert into Peoples values (1, "João Lucas Freitas", "Rua das Flores", 1, "86031858", "43996969696", "jl_freitas@email.com", 1500, "Casa");
+insert into Peoples values (2, "Juliana Pires", "Rua Alagoas", 1, "86111222", "43936363636", "j_pires@email.com", 2, "Ap. 704");
+
+select * from Peoples;
