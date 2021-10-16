@@ -4,7 +4,7 @@ create schema loja_2021;
 
 use loja_2021;
 
--- Semana 04 - 2021-09-08
+-- SEMANA 04 | 2021-09-08
 create table Countries(
 	id int not null auto_increment,
     name varchar(50) not null,
@@ -15,8 +15,8 @@ create table Cities(
 	id int not null auto_increment primary key,
     name varchar(50) not null,
     uf char(2),
-    id_country int not null,
-    foreign key(id_country) references Countries(id)
+    country_id int not null,
+    foreign key(country_id) references Countries(id)
 );
 
 create table Categories(
@@ -24,9 +24,9 @@ create table Categories(
     name varchar(50) not null
 );
 
-describe Countries;
+-- describe Countries;
 
--- Semana 05 - 2021-09-13
+-- SEMANA 05 | 2021-09-13
 
 -- DML - inserção de dados
 insert into Countries values (1, "Brasil");
@@ -40,10 +40,10 @@ insert into Countries values (8, "Venezuela");
 insert into Countries values (9, "Equador");
 
 -- DML - slecionar os dados
-select * from Countries;
-select name from Countries;
-select * from Countries order by name; -- asc(default) ou desc
-select * from Countries order by name desc;
+-- select * from Countries;
+-- select name from Countries;
+-- select * from Countries order by name; -- asc(default) ou desc
+-- select * from Countries order by name desc;
 
 insert into Countries(name) values 
 	("Bolívia"),
@@ -54,9 +54,9 @@ insert into Countries(name) values
 	("Guiana"),
 	("Paises Baixos Caribenhos");
 
-desc Cities;
+-- desc Cities;
 
-insert into Cities(name, uf, id_country) values 
+insert into Cities(name, uf, country_id) values 
 	("Londrina", "PR", 1),
     ("Cambé", "PR", 1),
     ("Ponta Grossa", "PR", 1),
@@ -78,12 +78,12 @@ insert into Cities(name, uf, id_country) values
     ("Durán", null, 9),
     ("Quevedo", null, 9);
     
-select * from Cities;
+-- select * from Cities;
 
--- semana 6 - 2021-09-20
-show tables;
+-- SEMANA 6 - 2021-09-20
+-- show tables;
 
-select * from Countries;
+-- select * from Countries;
 
 -- DML - update - ataualiza um registro
 
@@ -105,7 +105,7 @@ insert into Categories (name) values
     ("Livros"),
     ("Games");
 
-select * from Categories;
+-- select * from Categories;
 
 -- operadores relacionais do MySQL
 -- = igualdade
@@ -113,34 +113,34 @@ select * from Categories;
 -- < || <= || > || >=
 
 -- selecionar o nome de todas as cidades do Paraná
-select name 
-    from Cities
-    where uf = "PR"
-    order by name;
+-- select name 
+    -- from Cities
+    -- where uf = "PR"
+    -- order by name;
 
 -- selecionar o nome e uf todas as cidades que não são do Paraná
-select name, uf
-    from Cities
-    where uf != "PR"
-    order by uf desc;
+-- select name, uf
+    -- from Cities
+    -- where uf != "PR"
+    -- order by uf desc;
 
-desc Categories;
+-- desc Categories;
 
 -- consultas de junção - para usar info de mais de uma tabela
 -- selecionar o nome das cidades com o nome dos respectivs paises em ordem alfabetica crescente do nome da cidade
 
-select Cities.name, Countries.name 
-    from Cities, Countries
-    where Cities.id_country = Countries.id
-    order by Cities.name;
+-- select Cities.name, Countries.name 
+    -- from Cities, Countries
+    -- where Cities.country_id = Countries.id
+    -- order by Cities.name;
 
 -- as - renomear nome do atributo
-select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
-    from Cities, Countries
-    where Cities.id_country = Countries.id
-    order by Cities.name;
+-- select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    -- from Cities, Countries
+    -- where Cities.country_id = Countries.id
+    -- order by Cities.name;
 
--- Atividade
+-- ATIVIDADE
 update Categories 
     set name = "Jogos" 
     where id = 10;
@@ -157,51 +157,51 @@ insert into Categories (name) values
     ("Jardim e piscina"),
     ("Móveis");
 
--- Semana 7 - 2021-09-29
+-- SEMANA 7 | 2021-09-29
 
 -- Selecionar todas as cidades com nome de Palmas
 
-select * from Cities where name = "Palmas";
+-- select * from Cities where name = "Palmas";
 
 -- Operador especial - is null
-select name from Cities where uf is null;
+-- select name from Cities where uf is null;
 
 -- Operadores lógicos - and | or | not
 -- Selecionar o nome da cidades com o nome de seus respectivos paises em ordem alfabetica crescente do nome das cidades (apenas cidades do paraná)
-select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
-    from Cities, Countries
-    where Cities.id_country = Countries.id
-    and Cities.uf = 'PR'
-    order by Cities.name;
+-- select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    -- from Cities, Countries
+    -- where Cities.country_id = Countries.id
+    -- and Cities.uf = 'PR'
+    -- order by Cities.name;
 
 -- Selecionar o nome da cidades com o nome de seus respectivos paises em ordem alfabetica crescente do nome das cidades (apenas cidades do paraná e são paulo)
-select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
-    from Cities, Countries
-    where Cities.id_country = Countries.id
-    and (uf = 'PR' or uf = 'SP')
-    order by Cities.name;
+-- select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    -- from Cities, Countries
+    -- where Cities.country_id = Countries.id
+    -- and (uf = 'PR' or uf = 'SP')
+    -- order by Cities.name;
 
 -- Selecionar o nome da cidades com o nome de seus respectivos paises em ordem alfabetica crescente do nome das cidades (exceto as cidades do paraná)
-select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais', uf
-    from Cities, Countries
-    where Cities.id_country = Countries.id
-    and not(uf = 'PR')
-    order by Cities.name;
+-- select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais', uf
+    -- from Cities, Countries
+    -- where Cities.country_id = Countries.id
+    -- and not(uf = 'PR')
+    -- order by Cities.name;
 
-select * 
-    from Cities 
-    where name = "Palmas";
+-- select * 
+    -- from Cities 
+    -- where name = "Palmas";
 
 -- like - utiliza para comparar um padrão de busca %
 -- selecionar o nome de todas as cidades que começam com a letra Livros
-select name 
-    from Cities
-    where name like 'L%';
+-- select name 
+    -- from Cities
+    -- where name like 'L%';
 
 -- selecionar o nome de todas as cidades que tenham "ON" em qualquer parte do nome
-select name 
-    from Cities
-    where name like '%on%';
+-- select name 
+    -- from Cities
+    -- where name like '%on%';
 
 -- DDL - criação da tabela de produto
 create table if not exists Products (
@@ -209,54 +209,55 @@ create table if not exists Products (
     name varchar(50) not null,
     quantity int not null,
     min_quantity int not null,
-    id_category int not null,
+    category_id int not null,
     price decimal(6, 2) not null,
-    foreign key(id_category) references Categories(id)
+    foreign key(category_id) references Categories(id)
 );
 
-show tables;
+-- show tables;
 
 -- DDL - renomear as tabelas
 -- rename table <nome_original> to <novo_nome>;
 -- alter table <nome_original> rename <novo_nome>;
 -- rename table <nome_original1> to <novo_nome1>, <nome_original2> to <novo_nome2>;
 
--- atividade
+-- ATIVIDADE
+
 -- Selecione o nome de todos os paises que iniciam com a letra "E". Ordene em ordem decrescente de nome: 
-select name from Countries where name like "E%" order by name desc;
+-- select name from Countries where name like "E%" order by name desc;
 
 -- Selecione o nome de todas as cidades, bem como o nome de seus respectivos paises para as cidades que iniciam com a letra letra "C". Ordene em ordem crescente de nome da cidade:
-select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
-    from Cities, Countries
-    where Cities.id_country = Countries.id
-    and Cities.name like "C%"
-    order by Cities.name;
+-- select Cities.name as 'Nome da cidade', Countries.name as 'Nome da pais'
+    -- from Cities, Countries
+    -- where Cities.country_id = Countries.id
+    -- and Cities.name like "C%"
+    -- order by Cities.name;
 
 -- Selecione o nome de todas as categorias que iniciam com a letra letra "E". Ordene em ordem decrescente de nome da categoria:
-select name from Categories where name like "E%" order by name desc;
+-- select name from Categories where name like "E%" order by name desc;
 
 -- Selecione o nome de todas as categorias que contenham a string "ri" em qualquer parte do nome. Ordene em ordem crescente de nome da categoria:
-select name from Categories where name like "%ri%" order by name;
+-- select name from Categories where name like "%ri%" order by name;
 
 -- Qual é o comando que permite a criação do banco de dados Loja_2021.
 -- create schema loja_2021;
 
 -- Cite as três formas de visualização das colunas de uma tabela. 
-describe Categories;
-desc Categories;
-show columns from Categories;
+-- describe Categories;
+-- desc Categories;
+-- show columns from Categories;
 
 -- Explique o que o seguinte comando faz: drop schema if exists loja_2021;
 -- Apaga o esquema(banco de dados) caso ele já exista.
 
--- Semana 8 - 2021-09-06
+-- SEMANA 8 | 2021-09-06
 
 -- DDL - alteração de tabela
 --     - ADD  - adicionar coluna
 --     - DROP - apagar coluna
 alter table Products add obersevation varchar(50) not null;
 
-desc Products;
+-- desc Products;
 
 alter table Products drop obersevation;
 
@@ -286,21 +287,21 @@ insert into Products
 insert into Products 
     values (10, "Samsung Galaxy S20", 200, 50, 1, 3250.50);
 
-select * from Products;
+-- select * from Products;
 
 -- Selecionar o nome o valor dos produtos que custam mais do R$ 150,00. Ordene em ordem decrescente de valor
 
-select name, price from Products where price > 150.0 order by price desc;
+-- select name, price from Products where price > 150.0 order by price desc;
 
 -- Selecionar o nome o valor dos produtos que custam R$ 150,00 ou menos. Ordene em ordem decrescente de valor
-select name, price from Products where price >= 150.0 order by price desc;
+-- select name, price from Products where price >= 150.0 order by price desc;
 
 -- Selecionar o nome o valor dos produtos que custam entre R$ 50,00 e R$ 500,00. Ordene em ordem decrescente de valor
-select name, price from Products where (price <= 500.0) and (price >= 50.0) order by price desc;
-select name, price from Products where price between 50.0 and 500.0 order by price desc;
+-- select name, price from Products where (price <= 500.0) and (price >= 50.0) order by price desc;
+-- select name, price from Products where price between 50.0 and 500.0 order by price desc;
 
 -- Atividade
-insert into Products (name, quantity, min_quantity, id_category, price) values 
+insert into Products (name, quantity, min_quantity, category_id, price) values 
     ("Apple MacBook Air 13.3", 100, 40, 11, 7293.23),
     ("Notebook Lenovo Ultrafino", 1000, 100, 11, 2939.89),
     ("Samsung BookIntel", 356, 36, 11, 2699.30),
@@ -312,13 +313,13 @@ insert into Products (name, quantity, min_quantity, id_category, price) values
     ("Biscoito Pedigree Biscrok", 458, 128, 17, 27.89),
     ("Coleira Antiparasitária Scalibor ", 785, 72, 17, 65.99);
 
--- Semana 9 - 2021-10-13
+-- SEMANA 9 | 2021-10-13
 
 -- Selecionar o nome e o valor dos produtos que custam menos de R$100,00 e mais de R$1000,00
-select name, price from Products where (price <= 100.0) or (price >= 1000.0);
+-- select name, price from Products where (price <= 100.0) or (price >= 1000.0);
 
 -- Selecionar o nome e o valor dos produtos, exceto aqueles que custam R$28,50
-select name, price from Products where not(price = 28.50);
+-- select name, price from Products where not(price = 28.50);
 
 -- Funções agregadas
 -- count() - para fazer contagem de um conjunto de valores
@@ -328,19 +329,19 @@ select name, price from Products where not(price = 28.50);
 -- avg() - retorna a média de um conjunto de valores
 
 -- apresente o total de produtos cadastrados
-select count(name) from Products;
+-- select count(name) from Products;
 
 -- apresente o valor do produto mais barato
-select min(price) from Products;
+-- select min(price) from Products;
 
 -- apresente o valor do produto mais caro
-select max(price) from Products;
+-- select max(price) from Products;
 
 -- apresente a soma da variedade de produtos
-select sum(price) from Products;
+-- select sum(price) from Products;
 
 -- apresente a média da variedade de produtos
-select avg(price) from Products;
+-- select avg(price) from Products;
 
 -- criação da tabela Pessoas
 
@@ -348,11 +349,11 @@ create table Peoples (
     id int not null auto_increment primary key,
     name varchar(150) not null,
     street varchar(50) not null,
-    id_city int not null,
+    city_id int not null,
     zip_code varchar(10),
     phone varchar(20),
     email varchar(80),
-    foreign key (id_city) references Cities (id)
+    foreign key (city_id) references Cities (id)
 );
 
 -- incluir o atributo number
@@ -361,7 +362,7 @@ alter table Peoples add number varchar(15) not null;
 -- incluir o atributo complement e observation
 alter table Peoples add complement varchar(20), add observation varchar(80);
 
-desc Peoples;
+-- desc Peoples;
 
 -- remover o atributo observation
 alter table Peoples drop observation;
@@ -370,4 +371,48 @@ alter table Peoples drop observation;
 insert into Peoples values (1, "João Lucas Freitas", "Rua das Flores", 1, "86031858", "43996969696", "jl_freitas@email.com", 1500, "Casa");
 insert into Peoples values (2, "Juliana Pires", "Rua Alagoas", 1, "86111222", "43936363636", "j_pires@email.com", 2, "Ap. 704");
 
-select * from Peoples;
+-- select * from Peoples;
+
+-- ATIVIDADE
+insert into Peoples values
+(3, "Betina Nunes", "Avenida JK", 1, "86987121", "554333865567",
+"b_nunes@email.com", "987", "casa");
+insert into Peoples values
+(4, "Antonio Gonzaga", "Calle de Mejico", 19, "27813", "34922849410",
+"antonio_gonzaga@email.com", "34", "ap 102");
+insert into Peoples values
+(5, "Marina Freitas", "Avenida JK", 1, "86987121", "554333797576",
+"m_freitas@empresa.com", "1256", "ap 1004");
+insert into Peoples values
+(6, "Juan Gomes", "Av. Corrientes", 9, "C1193 CABA", "548002222299",
+"m_gomes@email.com", "2321", null);
+insert into Peoples values
+(7, "João Paulo Gonçalves", "Rua João XXIII", 1, "86060050", "554333788765",
+"jp_goncalves@email.com", "200", null);
+insert into Peoples values
+(8, "Rita Farias", "Rua Lina Nazatto", 1, "86088400", "554338016419",
+"r_farias@email.com", "352", "casa");
+insert into Peoples values
+(9, "Camila Rodrigues", "Rua Belo Horizonte", 1, "86055120", "55433870-8471",
+"c_rodrigues@email.com", "395", "ap 1001");
+insert into Peoples values
+(10, "Paulo Souza", "Rua Antonio Rasteiro", 2, "86192189", "554399789-8989",
+"p_souza@email.com", "575", null);
+
+insert into Peoples (name, street, city_id, zip_code, phone, email, number, complement) values 
+    ("Carlos Eduardo Pereira", "Rua Amapa", 1, "86000222", "5543936363636", "c_pereira@email.com", "123", "Ap 1200"),
+    ("Rodrigo Gnomo", "Av. Rio de Janeiro", 2, "86000222", "5543946464646", "r_gnomo@email.com", "456", "Casa"),
+    ("Carla Pena", "Rua Santos Brunet", 3, "86000222", "5543926568989", "c_pena@email.com", "789", "Ap 1200"),
+    ("Magda Eduarda Santos", "Av. São Paulo", 4, "86000222", "5511926568989", "m_santos@email.com", "56", "Casa"),
+    ("Joana da Silva", "Rua Cambé", 5, "86000222", "5511936363636", "j_silva@email.com", "23", "Ap 1200"),
+    ("Mariana Patrcia Ferreira", "Av. Victoria Aguirre", 8, "00601", "543757454315", "m_ferreira@email.com", "53", null),
+    ("Maraisa Sula", "Rua Macapa", 5, "86000222", "5511936363636", "m_silva@email.com", "91", null),
+    ("Natalia Gabriela Pena", "Av. Curitiba", 4, "86333332", "5511996565854", "n_pena@email.com", "89", "Casa"),
+    ("Henrique Gabriel Santos", "Rua Itajai", 3, "86222222", "5543936363636", "h_santos@email.com", "56", "Ap 500"),
+    ("Bruna da Silva", "Av. Santa Catarina", 2, "86111111", "5543936363636", "b_silva@email.com", "1", null);
+
+-- Selecionar o nome da pessoa e o nome da cidade. Ordene em ordem crescente de nome da pessoa
+-- select Peoples.name as 'Nome da Pessoa', Cities.name as 'Nome do pais' 
+    -- from Peoples, Cities 
+    -- where Peoples.city_id = Cities.id
+    -- order by Peoples.name;
