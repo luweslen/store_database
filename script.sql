@@ -412,7 +412,62 @@ insert into Peoples (name, street, city_id, zip_code, phone, email, number, comp
     ("Bruna da Silva", "Av. Santa Catarina", 2, "86111111", "5543936363636", "b_silva@email.com", "1", null);
 
 -- Selecionar o nome da pessoa e o nome da cidade. Ordene em ordem crescente de nome da pessoa
--- select Peoples.name as 'Nome da Pessoa', Cities.name as 'Nome do pais' 
+-- select Peoples.name as 'Nome da Pessoa', Cities.name as 'Nome da cidade' 
     -- from Peoples, Cities 
     -- where Peoples.city_id = Cities.id
     -- order by Peoples.name;
+
+-- SEMANA 10 | 2021-10-20
+
+-- Selecionar o nome da pessoa, o nome da cidade e o nome do pais. Ordene em ordem crescente de nome da pessoa
+-- select Peoples.name as 'Nome da Pessoa', Cities.name as 'Nome da cidade', Countries.name as 'Nome do país' 
+--     from Peoples, Cities, Countries
+--     where (Peoples.city_id = Cities.id) and (Cities.country_id = Countries.id)
+--     order by Peoples.name;
+
+-- Apresente o total de categorias que iniciam coma aletra Eduarda
+-- select count(name) as 'Toal de categorias que iniciam coma aletra E' from Categories where name like 'E%';
+
+-- DDL - Criação da tabela de clientes
+create table Clients (
+    id int not null auto_increment primary key,
+    people_id int not null,
+    cpf varchar(14) not null,
+    family_income decimal(10, 2) not null,
+    rg varchar(20),
+    birth_date date not null,
+    marita_status varchar(30),
+    foreign key (people_id) references Peoples (id)
+);
+
+alter table Clients drop marita_status;
+
+insert into Clients (people_id, cpf, family_income, rg, birth_date) values 
+    (1, "07506858998", 3500.10, null, "1989/01/31"),
+    (2, "12345678978", 2500.35, "1025869858", "2000/03/25"),
+    (3, "12141546545", 9825.25, null, "1998/05/04"),
+    (4, "78454515155", 15115.58, "1234567891", "1958/07/04"),
+    (5, "15145115151", 15161.20, null, "1999/06/14"),
+    (6, "15151511512", 1000.15, "98765432115", "1998/08/06"),
+    (7, "15484515111", 22155.15, null, "1978/12/14"),
+    (8, "15156151561", 82165.45, "2583691478", "1956/10/08"),
+    (9, "15611561661", 9820.95, null, "1974/06/13"),
+    (10, "15615616151", 3250.35, "2589631478", "1982/07/15");
+
+-- select * from Clients;
+
+-- Selecionar o nome do cliente, a data de nascimento, o nome da cidade e o nome do pais
+-- select Peoples.name as "Nome do cliente",
+--     Clients.birth_date as "Data de nascimento",
+--     Cities.name as "Nome da cidade",
+--     Countries.name as "Nome do pais"
+-- from Peoples, Clients, Countries, Cities
+-- where (Clients.people_id = Peoples.id) and
+--     (Peoples.city_id = Cities.id) and 
+--     (Cities.country_id = Countries.id)
+-- order by Peoples.name;
+
+
+
+
+
