@@ -467,7 +467,12 @@ insert into Clients (people_id, cpf, family_income, rg, birth_date) values
 --     (Cities.country_id = Countries.id)
 -- order by Peoples.name;
 
-
+insert into Clients (people_id, cpf, family_income, rg, birth_date) values 
+    (11, "12123132121", 7021.10, null, "1968/01/31"),
+    (12, "78464112131", 6589.35, "7898765445", "2001/12/23"),
+    (13, "87951315456", 1251.25, null, "1991/10/06"),
+    (14, "36521488652", 123123.58, "1235698745", "1989/08/04"),
+    (15, "78456154568", 144656.20, null, "1994/01/05");
 
 
 
