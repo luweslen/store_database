@@ -549,14 +549,109 @@ create table Providers (
     foreign key(people_id) references Peoples(id)
 );
 
+insert into Peoples values
+    (21, "Fatima Mendes","Conjunto Vivi Xavier", 1, "86230-085",
+    "(41) 3824-2914","f_mendes@email.com", "830", null);
+insert into Peoples values
+    (22, "Pietro Gráfica","Estrada Brasílio de Lima", 3, "09822-020",
+    "(44)3221-5678","p_grafica@email.com", "784", "Parque Botujuru");
+insert into Peoples values
+    (23, "Natália e Kevin Pizzaria Ltda", "Rua Said Mansur", 3,
+    "09822-020", "(11) 3668-2621", "nk_pizzaria@email.com", "2345", null);
+insert into Peoples values
+    (24, "Marli e Paulo Buffet ME", "Rua das Araucárias", 5,
+    "80304-320", "(41) 3791-7057", "mp_buffet@email.com", "34", null);
+insert into Peoples values
+    (25, "Thomas e Anthony Adega ME", "Jardinete Dom Krause", 5,
+    "82640-182", "(41) 3610-4786", "ta_adega@empresa.com", "303", "Santa Cândida");
+insert into Peoples values
+    (26, "Vinicius e Levi Telas Ltda", "Rua Anita Ribeiro Fontes", 5,
+    "83215-550", "(41) 2557-376", "vl_telas@email.com", "833", null);
+insert into Peoples values
+    (27, "Giovanna e Rafael Ferragens ME", "Rua Nhambu", 6,
+    "83123-432", "(44) 2877-6724", "gr_ferragens@email.com", "309", null);
+insert into Peoples values
+    (28, "Pedro e Lara Doces & Salgados ME", "Avenida Colombo", 6,
+    "83077-403", "(44) 3948-2074", "pl_docesesalgados@email.com", "124", null);
+insert into Peoples values
+    (29, "Corretores Associados", "Rua Paranaguá", 1,
+    "86234-834", "(43)3361-1690", "c_associados@email.com", "547", "sala 5");
+insert into Peoples values
+    (30, "Editora Arqueiro", "Rua Albert Leimer", 3,
+    "07140-020", "(11)2538-4100", "e_arqueiro@email.com", "300", null);
 
+-- Liste todos os campos da tabela de pessoas ordenados por ordem alfabética de nome
+-- select * from Peoples order by name;
 
+-- Liste o nome e data de nascimento de todos os clientes ordenados por data de nascimento
+-- select name, birth_date from Peoples, Clients where (Peoples.id = Clients.people_id) order by birth_date;
 
+-- Liste a menor renda familiar da tabela de Clientes. Renomeie o campo para “Menor renda familiar”.
+-- select min(family_income) as “Menor renda familiar” from Clients;
 
+-- Mostre a média das rendas familiares dos clientes. Renomeie o campo para “Média das rendas familiares”.
+-- select avg(family_income) as “Média das rendas familiares” from Clients;
 
+-- Selecione o nome e a data de nascimento dos clientes nascidos antes de 1980
+-- select name, birth_date
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and (year(birth_date) < 1980);
 
+-- Selecione o nome e a data de nascimento dos clientes que nasceram no mês de julho
+-- select name, birth_date
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and (month(birth_date) = 7);
 
+-- Selecionar o nome e a renda familiar dos clientes que recebem entre R$ 5000,00 e R$ 8000,00
+-- select name, family_income
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and (family_income >= 5000) 
+--     and (family_income <= 8000);
 
+-- Selecionar o nome e a renda familiar dos clientes que recebem menos de R$ 5000,00 e mais de R$ 8000,00
+-- select name, family_income
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and ((family_income >= 8000) or (family_income <= 5000));
 
+-- Gere 5 consultas diferentes para o banco de dados Loja_2021, com o respectivo enunciado
+-- Selecione o nome e CPF os clientes que o CPF possui "123" e ordene por ordem crescente do CPF.
+-- select name, cpf
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and (cpf like "%123%")
+--     order by cpf;
 
+-- Selecione o nome e o cpf dos clientes que moram em cambé e orderne por ordem decrescente do nome
+-- select Peoples.name, cpf
+--     from Clients, Peoples, Cities
+--     where (Peoples.id = Clients.people_id) 
+--     and (Peoples.city_id = Cities.id) 
+--     and (Cities.name = "Cambé")
+--     order by Peoples.name desc;
 
+-- Liste quantos clientes moram em Londrina e renomei para "Quantidade de clientes que moram em Londrina"
+-- select count(Peoples.name) as "Quantidade de clientes que moram em Londrina"
+--     from Clients, Peoples, Cities 
+--     where (Peoples.id = Clients.people_id) 
+--     and (Peoples.city_id = Cities.id)
+--     and (Cities.name = "Londrina");
+
+-- Selecione o nome, o CPF e a cidade dos clientes que moram em Cambé, Londrina ou Ibiporã e que o CPF começa com 1. Orderne pelo nome da cidade.
+-- select Peoples.name as "Nome do cliente", Clients.cpf, Cities.name as "Nome da cidade"
+--     from Clients, Peoples, Cities 
+--     where (Peoples.id = Clients.people_id) 
+--     and (Peoples.city_id = Cities.id)
+--     and (Clients.cpf like "1%")
+--     and ((Cities.name = "Londrina") or (Cities.name = "Cambé") or (Cities.name = "Ibiporã"))
+--     order by (Cities.name);
+
+-- Selecione o nome, data de nascmento e o cpf dos clientes que nasceram depois do ano 2000. Ordene pela data de nascimento.
+-- select Peoples.name as "Nome do cliente", Clients.birth_date as "Data de nascimento", Clients.cpf
+--     from Clients, Peoples 
+--     where (Peoples.id = Clients.people_id) 
+--     and (year(Clients.birth_date) > 2000)
+--     order by (Clients.birth_date);
