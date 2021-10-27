@@ -474,5 +474,89 @@ insert into Clients (people_id, cpf, family_income, rg, birth_date) values
     (14, "36521488652", 123123.58, "1235698745", "1989/08/04"),
     (15, "78456154568", 144656.20, null, "1994/01/05");
 
+-- SEMANA 11 | 2021-10-27
+
+-- selecione a data de nascimento do cliente mais idoso
+-- select min(birth_date) from Clients;
+
+-- Selecione a data de nascimento do cliente mais jovem
+-- select max(birth_date) from Clients;
+
+-- Selecione o nome e a data de nascimento de todos os clientes que possuam "ar" no nome em qualquer parte para
+-- select name as "Nome do cliente", birth_date as "Data de nascimento"
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) and (name like "%ar%");
+
+-- Liste a maior renda familiar da tabela de clientes
+-- Renomeie para "Maior renda familiar"
+-- select max(family_income) as "Maior renda familiar" from Clients;
+
+-- Apresente o número total de clientes e renomeie para "Quantidade total de clientes"
+-- select count(cpf) as "Quantidade total de clientes" from Clients;
+
+-- Operações com datas
+-- day() - retorna o dia de uma datas
+-- month() - retorna o mês de uma data
+-- year() - retorna o ano de uma data
+
+-- Selecione o nome e data de nascimento dos clientes que nasceram no mês 10
+-- select name as "Nome do cliente", birth_date as "Data de nascimento"
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and (month(birth_date) = 10);
+
+-- Selecione o nome e data de nascimento dos clientes que nascseram antes de 1990
+-- select name as "Nome do cliente", birth_date as "Data de nascimento"
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and (year(birth_date) < 1990);
+
+-- Selecione o nome e data de nascimento dos clientes que fazem aniversário na data de hoje
+-- select name as "Nome do cliente", birth_date as "Data de nascimento"
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id) 
+--     and (month(birth_date) = 10)
+--     and (day(birth_date) = 20);
+
+-- Cláusula limit = define o número máximo de registros que retorna
+-- select name from Cities limit 5;
+
+-- Cláusula offset = define o ínicio da leitura
+-- select name from Cities limit 10 offset 3;
+
+-- Funções de manipulação de texto 
+-- left - retorna os primeiros caracteres de
+-- right - retorna os últimos caracteres de
+-- mid - substring - retorna caracteres do meio da string
+
+-- select left(name, 3) from Cities;
+-- select name as "Clienetes de M a Z" 
+--     from Clients, Peoples 
+--     where (Peoples.id = Clients.people_id)
+--     and left(name, 1) >= "J"
+--     order by name;
+
+-- select right(name, 3) from Cities;
+-- select mid(name, 2, 3) from Cities;
+
+-- Criação tabela de fornecedores
+
+create table Providers (
+    id int not null auto_increment primary key,
+    people_id int not null,
+    cnpj varchar(18) not null,
+    responsible varchar(30) not null,
+    foreign key(people_id) references Peoples(id)
+);
+
+
+
+
+
+
+
+
+
+
 
 

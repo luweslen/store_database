@@ -3,6 +3,11 @@
 ## 📙 About
 Academic work developed in the subject of *Projeto e Implementação de Banco de Dados* in the course of *Tecnologia em Analise e Desenvolvimento de Sistemas* in *Instituto Federal do Paraná* using SQL, MySQL and MySQL Workbench.
 
+> **College:** [Instituto Federal do Paraná - campus Londrina](https://londrina.ifpr.edu.br) \
+> **Course:** [Tecnologia em Analise e Desenvolvimento de Sistemas](https://londrina.ifpr.edu.br/tecnologia-em-analise-e-desenvolvimento-de-sistemas/componentes-curriculares/) \
+> **Subject:** Database design and implementation \
+> **Professor:** [Luciana Pöttker](https://www.linkedin.com/in/luciana-m-vieira-p%C3%B6ttker-4ba6712b/)
+
 ## 👨‍💻 Made by
 
 <table>
