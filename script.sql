@@ -549,6 +549,8 @@ create table Providers (
     foreign key(people_id) references Peoples(id)
 );
 
+
+
 insert into Peoples values
     (21, "Fatima Mendes","Conjunto Vivi Xavier", 1, "86230-085",
     "(41) 3824-2914","f_mendes@email.com", "830", null);
@@ -655,3 +657,64 @@ insert into Peoples values
 --     where (Peoples.id = Clients.people_id) 
 --     and (year(Clients.birth_date) > 2000)
 --     order by (Clients.birth_date);
+
+-- SEMANA 12 | 2021-11-03
+-- Inserção de registros na tabela de Fornecedores para
+insert into Providers (people_id, cnpj, responsible) values 
+    (16, "13851585000103", "Fátima M. Santos"),
+    (17, "12141654151516", "Tatiane M. Souza"),
+    (18, "44851116515156", "Luiza Costa"),
+    (19, "56145641210212", "Lorenzo Dumond"),
+    (20, "15656151116516", "Carlos Gabriel Macedo");
+
+-- select * from Providers;
+
+-- Funções para manipulação de textos
+-- length - retorna o tamanho de um texto
+-- select length(name) from Peoples;
+
+-- lower - retorna um texto tudo em minúsculo
+-- select lower(name) from Peoples;
+
+-- upper - retorna um texto tudo em maiúsculo
+-- select upper(name) from Peoples;
+
+-- replace - substitui parte do texto
+-- select replace(responsible, "M.", "Maria") from Providers;
+
+-- locate - mretorna uma posição dentro de um determinado texto
+-- select locate("b", "Ana Paula");
+-- select locate("p", name) from Peoples;
+-- select name 
+--     from Peoples 
+--     where locate("ri", name);
+
+-- concat - concatenar dois textos
+-- select concat(Peoples.name, " - R$ ", Clients.family_income)
+--     from Peoples, Clients
+--     where Peoples.id = Clients.people_id;
+
+-- trim - remove espaços em brancos de
+-- select trim('                 tec       .            ');
+
+-- Funções para manipulação de números
+-- round - arredaondar um determinado números
+-- select round(10.82);
+
+-- select name, round(family_income)
+--     from Peoples, Clients
+--     where Peoples.id = Clients.people_id;
+
+-- truncate - trunca um determinado número
+-- select truncate(10.82, 1);
+
+-- select name, truncate(family_income, 2)
+--     from Peoples, Clients
+--     where Peoples.id = Clients.people_id;
+
+
+
+
+
+
+
