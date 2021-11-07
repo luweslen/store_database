@@ -712,9 +712,24 @@ insert into Providers (people_id, cnpj, responsible) values
 --     from Peoples, Clients
 --     where Peoples.id = Clients.people_id;
 
+-- Atividades
+-- Inclua os seguintes registros na tabela de Fornecedores:
+insert into Providers values
+(6, 21, "56097339000102", "Cecília M. Portela");
+insert into Providers values
+(7, 22, "05861190000155", "Emanuel Goulart");
+insert into Providers values
+(8, 23, "18863728000102", "Daniel Amaral");
+insert into Providers values
+(9, 24, "05210453000166", "Augusto Golveia");
+insert into Providers values
+(10, 25, "37536517000100", "Carlos Eduardo Lopes");
 
-
-
-
-
-
+-- Insira mais cinco registros na tabela de Fornecedores:
+insert into Providers (people_id, cnpj, responsible) values 
+    (16, "13212313213213", "Rodrigo S. Pavão"),
+    (17, "31245412435612", "Joana C. Alves"),
+    (18, "76454543446436", "Joaquim Moreira"),
+    (19, "64823446524117", "Breno Dumond"),
+    (20, "97898778417748", "Witoria Brenda Paredes");
+    
