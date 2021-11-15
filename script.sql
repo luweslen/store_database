@@ -4,7 +4,9 @@ create schema loja_2021;
 
 use loja_2021;
 
--- SEMANA 04 | 2021-09-08
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 04 | 2021-09-08
 create table Countries(
 	id int not null auto_increment,
     name varchar(50) not null,
@@ -26,7 +28,9 @@ create table Categories(
 
 -- describe Countries;
 
--- SEMANA 05 | 2021-09-13
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 05 | 2021-09-13
 
 -- DML - inserção de dados
 insert into Countries values (1, "Brasil");
@@ -80,7 +84,9 @@ insert into Cities(name, uf, country_id) values
     
 -- select * from Cities;
 
--- SEMANA 6 - 2021-09-20
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 6 - 2021-09-20
 -- show tables;
 
 -- select * from Countries;
@@ -140,7 +146,7 @@ insert into Categories (name) values
     -- where Cities.country_id = Countries.id
     -- order by Cities.name;
 
--- ATIVIDADE
+-------------------- ATIVIDADES
 update Categories 
     set name = "Jogos" 
     where id = 10;
@@ -157,7 +163,9 @@ insert into Categories (name) values
     ("Jardim e piscina"),
     ("Móveis");
 
--- SEMANA 7 | 2021-09-29
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 7 | 2021-09-29
 
 -- Selecionar todas as cidades com nome de Palmas
 
@@ -221,7 +229,7 @@ create table if not exists Products (
 -- alter table <nome_original> rename <novo_nome>;
 -- rename table <nome_original1> to <novo_nome1>, <nome_original2> to <novo_nome2>;
 
--- ATIVIDADE
+-------------------- ATIVIDADES
 
 -- Selecione o nome de todos os paises que iniciam com a letra "E". Ordene em ordem decrescente de nome: 
 -- select name from Countries where name like "E%" order by name desc;
@@ -250,7 +258,9 @@ create table if not exists Products (
 -- Explique o que o seguinte comando faz: drop schema if exists loja_2021;
 -- Apaga o esquema(banco de dados) caso ele já exista.
 
--- SEMANA 8 | 2021-09-06
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 8 | 2021-09-06
 
 -- DDL - alteração de tabela
 --     - ADD  - adicionar coluna
@@ -313,7 +323,9 @@ insert into Products (name, quantity, min_quantity, category_id, price) values
     ("Biscoito Pedigree Biscrok", 458, 128, 17, 27.89),
     ("Coleira Antiparasitária Scalibor ", 785, 72, 17, 65.99);
 
--- SEMANA 9 | 2021-10-13
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 9 | 2021-10-13
 
 -- Selecionar o nome e o valor dos produtos que custam menos de R$100,00 e mais de R$1000,00
 -- select name, price from Products where (price <= 100.0) or (price >= 1000.0);
@@ -373,7 +385,7 @@ insert into Peoples values (2, "Juliana Pires", "Rua Alagoas", 1, "86111222", "4
 
 -- select * from Peoples;
 
--- ATIVIDADE
+-------------------- ATIVIDADES
 insert into Peoples values
 (3, "Betina Nunes", "Avenida JK", 1, "86987121", "554333865567",
 "b_nunes@email.com", "987", "casa");
@@ -417,7 +429,9 @@ insert into Peoples (name, street, city_id, zip_code, phone, email, number, comp
     -- where Peoples.city_id = Cities.id
     -- order by Peoples.name;
 
--- SEMANA 10 | 2021-10-20
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 10 | 2021-10-20
 
 -- Selecionar o nome da pessoa, o nome da cidade e o nome do pais. Ordene em ordem crescente de nome da pessoa
 -- select Peoples.name as 'Nome da Pessoa', Cities.name as 'Nome da cidade', Countries.name as 'Nome do país' 
@@ -474,7 +488,9 @@ insert into Clients (people_id, cpf, family_income, rg, birth_date) values
     (14, "36521488652", 123123.58, "1235698745", "1989/08/04"),
     (15, "78456154568", 144656.20, null, "1994/01/05");
 
--- SEMANA 11 | 2021-10-27
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 11 | 2021-10-27
 
 -- selecione a data de nascimento do cliente mais idoso
 -- select min(birth_date) from Clients;
@@ -548,8 +564,6 @@ create table Providers (
     responsible varchar(30) not null,
     foreign key(people_id) references Peoples(id)
 );
-
-
 
 insert into Peoples values
     (21, "Fatima Mendes","Conjunto Vivi Xavier", 1, "86230-085",
@@ -658,7 +672,9 @@ insert into Peoples values
 --     and (year(Clients.birth_date) > 2000)
 --     order by (Clients.birth_date);
 
--- SEMANA 12 | 2021-11-03
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 12 | 2021-11-03
 -- Inserção de registros na tabela de Fornecedores para
 insert into Providers (people_id, cnpj, responsible) values 
     (16, "13851585000103", "Fátima M. Santos"),
@@ -712,18 +728,13 @@ insert into Providers (people_id, cnpj, responsible) values
 --     from Peoples, Clients
 --     where Peoples.id = Clients.people_id;
 
--- Atividades
+-------------------- ATIVIDADES
 -- Inclua os seguintes registros na tabela de Fornecedores:
-insert into Providers values
-(6, 21, "56097339000102", "Cecília M. Portela");
-insert into Providers values
-(7, 22, "05861190000155", "Emanuel Goulart");
-insert into Providers values
-(8, 23, "18863728000102", "Daniel Amaral");
-insert into Providers values
-(9, 24, "05210453000166", "Augusto Golveia");
-insert into Providers values
-(10, 25, "37536517000100", "Carlos Eduardo Lopes");
+insert into Providers values (6, 21, "56097339000102", "Cecília M. Portela");
+insert into Providers values (7, 22, "05861190000155", "Emanuel Goulart");
+insert into Providers values (8, 23, "18863728000102", "Daniel Amaral");
+insert into Providers values (9, 24, "05210453000166", "Augusto Golveia");
+insert into Providers values (10, 25, "37536517000100", "Carlos Eduardo Lopes");
 
 -- Insira mais cinco registros na tabela de Fornecedores:
 insert into Providers (people_id, cnpj, responsible) values 
@@ -732,4 +743,99 @@ insert into Providers (people_id, cnpj, responsible) values
     (18, "76454543446436", "Joaquim Moreira"),
     (19, "64823446524117", "Breno Dumond"),
     (20, "97898778417748", "Witoria Brenda Paredes");
-    
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 13 | 2021-11-10
+-- Funções de manipulação de números de
+-- sqrt() - retorna raiz quadrada
+-- select sqrt(9);
+
+-- sign() - retorna 1: maior valor primeiro, 0: valores iguais,  -1: segundo valor maior valor
+-- select sign(2, 0);
+
+-- abs() - retorna o valor absoluto
+-- select abs(7.555);
+
+-- mod() - resto de uma divisão inteira
+-- select mod(8, 2);
+
+create table Orders (
+    id int not null auto_increment primary key,
+    provider_id int not null,
+    created_at date not null,
+    receipt_date date,
+    foreign key(provider_id) references Providers(id)
+);
+
+insert into Orders values (1, 1, "2021-09-08", "2021-09-10");
+insert into Orders values (2, 1, "2021-09-13", "2021-09-14");
+
+create table Order_Items (
+    id int not null auto_increment primary key,
+    order_id int not null,
+    product_id int not null,
+    quantity int not null,
+    price decimal(10, 2),
+    foreign key(order_id) references Orders(id),
+    foreign key(product_id) references Products(id)
+);
+
+insert into Order_Items values (1, 2, 1, 10, 28.50 );
+insert into Order_Items values (2, 2, 2, 20, 28.79 );
+insert into Order_Items values (3, 2, 5, 15, 28.79 );
+insert into Order_Items values (4, 2, 6, 5, 208.79 );
+insert into Order_Items values (5, 2, 7, 50, 117.79 );
+insert into Order_Items values (6, 1, 4, 2, 2890.79 );
+
+-- operações com data
+-- select curdate();
+-- select current_date(), current_date() + 10;
+-- select sysdate(), now();
+-- select dayname(curdate());
+-- select dayname("2000-12-31");
+-- select monthname("2000-12-31");
+
+-------------------- ATIVIDADES
+-- Inclua os seguintes registros na tabela de Pedidos:
+insert into Orders values (3,  2, "2021-10-11", "2021-10-18");
+insert into Orders values (4,  2, "2021-10-13", "2021-10-20");
+insert into Orders values (5,  3, "2021-10-13", "2021-10-16");
+insert into Orders values (6,  3, "2021-10-20", "2021-10-22");
+insert into Orders values (7,  4, "2021-11-01", "2021-10-04");
+insert into Orders values (8,  4, "2021-11-03", "2021-10-06");
+insert into Orders values (9,  6, "2021-11-10", null);
+insert into Orders values (10, 6, "2021-11-10", null);
+
+-- Insira mais dez registros na tabela de Pedidos
+insert into Orders values (11, 4, "2021-11-11", "2021-11-15");
+insert into Orders values (12, 5, "2021-12-13", "2021-12-13");
+insert into Orders values (13, 2, "2021-01-01", "2021-01-15");
+insert into Orders values (14, 1, "2021-02-20", "2021-02-24");
+insert into Orders values (15, 7, "2021-03-01", "2021-03-15");
+insert into Orders values (16, 8, "2021-04-03", "2021-04-16");
+insert into Orders values (17, 9, "2021-05-10", null);
+insert into Orders values (18, 6, "2021-06-10", null);
+insert into Orders values (19, 5, "2021-07-10", null);
+insert into Orders values (20, 5, "2021-08-10", null);
+
+-- Inclua os seguintes registros na tabela de Itens_Pedidos
+insert into Order_Items values ( 7, 1, 10,  5, 3250.50);
+insert into Order_Items values ( 8, 4,  3, 50,  130.90);
+insert into Order_Items values ( 9, 5,  8, 50,   28.50);
+insert into Order_Items values (10, 6,  9, 15,  249.99);
+insert into Order_Items values (11, 2,  1, 25,   28.50);
+insert into Order_Items values (12, 2,  2, 35,   20.79);
+
+-- Insira mais dez registros na tabela de Itens_Pedidos
+insert into Order_Items values (13, 1,  1, 10,   28.50);
+insert into Order_Items values (14, 1,  2, 15,   28.79);
+insert into Order_Items values (15, 2,  3, 25,  130.90);
+insert into Order_Items values (16, 2,  4, 35, 6898.50);
+insert into Order_Items values (17, 3,  5, 54,   17.50);
+insert into Order_Items values (18, 3,  6, 15,  200.50);
+insert into Order_Items values (19, 4,  7, 14,  117.79);
+insert into Order_Items values (20, 4,  8, 78, 6582.90);
+insert into Order_Items values (21, 5,  9, 12,  249.50);
+insert into Order_Items values (22, 5, 10, 23, 3250.50);
+
