@@ -839,3 +839,59 @@ insert into Order_Items values (20, 4,  8, 78, 6582.90);
 insert into Order_Items values (21, 5,  9, 12,  249.50);
 insert into Order_Items values (22, 5, 10, 23, 3250.50);
 
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 14 | 2021-11-17
+
+create table Sales(
+    id int not null auto_increment primary key,
+    client_id int not null,
+    date date not null,
+    foreign key(client_id) references Clients(id)
+);
+
+create table Sales_Items(
+    id int not null auto_increment primary key,
+    sale_id int not null,
+    product_id int not null,
+    quantity int not null,
+    price decimal(10, 2),
+    foreign key(sale_id) references Sales(id),
+    foreign key(product_id) references Products(id)
+);
+
+-- Funções de manipulação de datas
+-- dayofmonth
+-- select dayofmonth('2021-11-17');
+
+-- dayofweek
+-- select dayofweek('2021-11-17');
+
+-- Apresente o nome e o dia da semana que o cliente nasceu
+-- select Peoples.name as "Nome do cliente",
+--     dayofweek(birth_date) as "Dia da semana que o cliente nasceu" 
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id
+-- );
+-- select Peoples.name as "Nome do cliente",
+--     dayofmonth(birth_date) as "Dia do mês que o cliente nasceu" 
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id
+-- );
+
+-- date_format
+-- select date_format(now(), "%d/%m/%Y");
+
+
+-- @@lc_time_names - verificar o idioma padrão
+-- select @@lc_time_names;
+-- set @@lc_time_names = 'pt_BR';
+
+-- extract - extração de dia, mês e ano de uma data
+-- select extract(day from noew());
+
+-- adddate - adicionar a uma data um determinado intervalo
+-- select adddate(now(), 20);
+-- select adddate(now(), interval 20 day);
+
