@@ -883,7 +883,6 @@ create table Sales_Items(
 -- date_format
 -- select date_format(now(), "%d/%m/%Y");
 
-
 -- @@lc_time_names - verificar o idioma padrão
 -- select @@lc_time_names;
 -- set @@lc_time_names = 'pt_BR';
@@ -895,3 +894,80 @@ create table Sales_Items(
 -- select adddate(now(), 20);
 -- select adddate(now(), interval 20 day);
 
+-------------------- ATIVIDADES
+
+-- Insira dez registros na tabela de Vendas
+insert into Sales values ( 1,  1, "2021-11-11");
+insert into Sales values ( 2,  2, "2021-12-13");
+insert into Sales values ( 3,  3, "2021-01-01");
+insert into Sales values ( 4,  4, "2021-02-20");
+insert into Sales values ( 5,  5, "2021-03-01");
+insert into Sales values ( 6,  6, "2021-04-03");
+insert into Sales values ( 7,  7, "2021-05-10");
+insert into Sales values ( 8,  8, "2021-06-10");
+insert into Sales values ( 9,  9, "2021-07-10");
+insert into Sales values (10, 10, "2021-08-10");
+
+-- Insira quinze registros na tabela de Itens_Vendas
+insert into Sales_Items values ( 1,  1,  1, 10,   28.50);
+insert into Sales_Items values ( 2,  2,  2, 15,   28.79);
+insert into Sales_Items values ( 3,  3,  3, 25,  130.90);
+insert into Sales_Items values ( 4,  4,  4, 35, 6898.50);
+insert into Sales_Items values ( 5,  5,  5, 54,   17.50);
+insert into Sales_Items values ( 6,  6,  6, 15,  200.50);
+insert into Sales_Items values ( 7,  7,  7, 14,  117.79);
+insert into Sales_Items values ( 8,  8,  8, 78, 6582.90);
+insert into Sales_Items values ( 9,  9,  9, 12,  249.50);
+insert into Sales_Items values (10, 10, 10, 23, 3250.50);
+
+-- Apresente o nome dos Clientes em maiúsculo.
+-- select upper(Peoples.name)
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id);
+
+-- Concatenar o nome e a data de nascimento de cada cliente.
+-- select concat(Peoples.name, " ", Clients.birth_date)
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id);
+
+-- Concatenar o nome e a renda familiar arredondada de cada cliente. Ordene por renda familiar.
+-- select concat(Peoples.name, " ", Clients.family_income)
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id)
+--     order by Clients.family_income;
+
+-- Obter uma relação de nomes de clientes cujos nomes começam com A, B, ..., E ou F, ordem alfabética.
+select Peoples.name
+    from Clients, Peoples
+    where (Peoples.id = Clients.people_id)
+    and Peoples.name between 'a' and 'f'
+    order by Peoples.name;
+
+-- Selecione os 10 PRIMEIROS caracteres à esquerda do nome dos clientes.
+-- select left(Peoples.name, 10)
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id);
+
+-- X Apresentar o nome e a idade de cada um dos clientes.
+select Peoples.name, year(now()) - year(Clients.birth_date) as 'Age'
+    from Clients, Peoples
+    where (Peoples.id = Clients.people_id)
+    and Peoples.name between 'a' and 'f';
+    
+-- Apresente o nome, o dia da semana e o nome do mês em que cada cliente nasceu.
+-- select Peoples.name, dayname(Clients.birth_date), month(Clients.birth_date)
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id);
+
+-- Selecione o nome dos Clientes que nasceram entre 1980-01-01 e 1990-01-01.
+-- select Peoples.name
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id)
+--     and (Clients.birth_date >= '1980-01-01')
+--     and (Clients.birth_date <= '1990-01-01');
+
+-- Selecione os nomes e datas de nascimento dos clientes que fazem aniversário no mês de Outubro.
+-- select Peoples.name, Clients.birth_date
+--     from Clients, Peoples
+--     where (Peoples.id = Clients.people_id)
+--     and (month(Clients.birth_date) = 10);
