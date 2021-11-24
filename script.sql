@@ -937,11 +937,11 @@ insert into Sales_Items values (10, 10, 10, 23, 3250.50);
 --     order by Clients.family_income;
 
 -- Obter uma relação de nomes de clientes cujos nomes começam com A, B, ..., E ou F, ordem alfabética.
--- select Peoples.name
---     from Clients, Peoples
---     where (Peoples.id = Clients.people_id)
---     and Peoples.name between 'a' and 'f'
---     order by Peoples.name;
+select Peoples.name
+    from Clients, Peoples
+    where (Peoples.id = Clients.people_id)
+    and left(Peoples.name, 1) <= 'f'
+    order by Peoples.name;
 
 -- Selecione os 10 PRIMEIROS caracteres à esquerda do nome dos clientes.
 -- select left(Peoples.name, 10)
@@ -949,10 +949,13 @@ insert into Sales_Items values (10, 10, 10, 23, 3250.50);
 --     where (Peoples.id = Clients.people_id);
 
 -- Apresentar o nome e a idade de cada um dos clientes.
--- select Peoples.name, year(now()) - year(Clients.birth_date) as 'Age'
---     from Clients, Peoples
---     where (Peoples.id = Clients.people_id)
---     and Peoples.name between 'a' and 'f';
+select Peoples.name, 
+        truncate((
+            period_diff(extract(year_month from now()), extract( year_month from Clients.birth_date)) / 12
+        ), 0) as 'Age'
+    from Clients, Peoples
+    where (Peoples.id = Clients.people_id)
+    and Peoples.name between 'a' and 'f';
     
 -- Apresente o nome, o dia da semana e o nome do mês em que cada cliente nasceu.
 -- select Peoples.name, dayname(Clients.birth_date), month(Clients.birth_date)
@@ -971,3 +974,49 @@ insert into Sales_Items values (10, 10, 10, 23, 3250.50);
 --     from Clients, Peoples
 --     where (Peoples.id = Clients.people_id)
 --     and (month(Clients.birth_date) = 10);
+
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 15 | 2021-11-24
+
+-- date_add() - adiciona uma data a um intervalo
+-- select date_add('2021-11-24 09:18:50', interval 1 day);
+
+-- sub_date() - subtrai uma data a um intervalo
+-- select sub_date('2021-11-24 09:18:50', interval 1 day);
+
+-- datediff() - retorna um intervalo de diferença entre datas
+-- select datediff(now(), Clients.birth_date) from Clients;
+
+-- last_day() - retorna o último dia do mês
+-- select last_day('2021-11-24');
+
+-- makedate - construir uma data -  a partir de uma referencia - dias
+
+-- from_days -  retorna uma data a partir de um número inteiro 
+
+-- period_diff() - retorna a difrença entre os meses
+
+-- Consulta que apresenta o nome e aidade em anos dos clientes
+-- select Peoples.name as "Nome", 
+--         truncate(((
+--                     period_diff(
+--                         extract(
+--                             year_moneth from now()
+--                         ), 
+--                         extract(
+--                             year_moneth from Clients.birth_date
+--                         )
+--                     ) / 12
+--                 ), 0)) as 'Idade'
+--     from Peoples, Clients
+--     where (Peoples.id = Clients.people_id)
+--     order by Peoples.name;
+
+-- quarter - retorna o trimestre de um ano
+
+-- week - retorna a semana de um ano
+
+-- weekday - retorna o dia da semana
+
