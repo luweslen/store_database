@@ -1020,3 +1020,48 @@ select Peoples.name,
 
 -- weekday - retorna o dia da semana
 
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+-------------------- SEMANA 16 | 2021-12-01
+
+-- curtime() - hora  atual hh:mm:ss
+-- select curtime();
+
+-- current_timestamp() - retorna a data corrente e a hora atual
+-- select current_timestamp();
+-- select date(current_timestamp());
+-- select time(current_timestamp());
+
+-- sec_to_time - converte de segundos para tempo
+-- select sec_to_time(3600);
+
+-- timediff - retorna a diferença entre dois tempos
+-- select timediff('09:22:50','09:10:43');
+-- select maketime(09, 15, 59);
+
+-- Join - inner join
+-- Selecione o nome dos clientes e o nome de suas respectivas cidades.
+-- select Peoples.name, Cities.name 
+-- 	from Peoples, Clients, Cities
+--     where Peoples.id = Clients.people_id 
+--         and Peoples.city_id = Cities.id;
+
+-- select Peoples.name, Cities.name 
+-- 	from Cities 
+--     inner join Peoples 
+--         on (Peoples.city_id = Cities.id)
+--     inner join Clients 
+--         on (Peoples.id = Clients.people_id);
+
+-- Selecione o nome do cliente, a data de nascimento, o nome da cidade e o nome do país dos clientes
+-- que nasceram antes de 1990. Ordene em ordem crescente de data de nascimento.
+-- select Peoples.name, Clients.birth_date, Cities.name, Countries.name 
+--     from Cities 
+--     inner join Peoples 
+--         on (Peoples.id = Cities.id)
+--     inner join Countries 
+--         on (Cities.country_id = Countries.id)
+--     inner join Clients 
+--         on (Peoples.id = Clients.people_id)
+--     where year(Clients.birth_date) < 1990 
+--     order by Clients.birth_date;
